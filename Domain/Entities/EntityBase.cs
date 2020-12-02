@@ -13,12 +13,14 @@ namespace PolyBook.Domain.Entities
         [Required]
         public Guid Id { get; set; }
 
+        [Required(ErrorMessage = "Заполните название")]
         [Display(Name = "Название")]
         public string Title { get; set; }
 
         [Display(Name = "Картинка")]
         public string ImagePath { get; set; }
 
+        [Required(ErrorMessage = "Объявление не может быть пустым")]
         [Display(Name = "Текст")]
         public string Text { get; set; }
 
