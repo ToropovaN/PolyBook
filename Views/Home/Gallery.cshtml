@@ -1,0 +1,12 @@
+﻿@switch (ViewData["GalleryNum"])
+{
+    case 1: ViewData["Title"] = "Library"; break;
+    case 2: ViewData["Title"] = "Market"; break;
+    case 3: ViewData["Title"] = "Coming soon"; break;
+    case 4: ViewData["Title"] = "Coming soon"; break;
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        It's @ViewData["Title"] Gallery
+</div>

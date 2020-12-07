@@ -14,8 +14,8 @@ namespace PolyBook.Domain.Entities
         [Display(Name = "Название галереи")]
         public string GalleryTitle { get; set; }
 
-        [Display(Name = "Контент галереи")]
-        public string GalleryContent { get; set; }
+        [Display(Name = "Номер галереи")]
+        public int GalleryNum { get; set; }
 
     }
 }

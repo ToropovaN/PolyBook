@@ -8,6 +8,10 @@ namespace PolyBook.Domain.Entities
 {
     public class Book : EntityBase
     {
+        [Required(ErrorMessage = "Выберите раздел")]
+        [Display(Name = "Раздел")]
+        public int BookGallery { get; set; }
+
         [Required(ErrorMessage = "Укажите автора")]
         [Display(Name = "Автор")]
         public string Author { get; set; }

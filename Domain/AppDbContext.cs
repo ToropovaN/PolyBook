@@ -50,27 +50,27 @@ namespace PolyBook.Domain
             {
                 Id = new Guid("800eb303-5aae-4584-b187-672b5154dc73"),
                 GalleryTitle = "Библиотека",
-                GalleryContent = "---",
+                GalleryNum = 0,
             });
             modelBuilder.Entity<Gallery>().HasData(new Gallery
             {
                 Id = new Guid("8373b069-930c-4cef-8e14-8c855d93d0a8"),
                 GalleryTitle = "Маркет",
-                GalleryContent = "---",
+                GalleryNum = 1,
             });
 
             modelBuilder.Entity<Gallery>().HasData(new Gallery
             {
                 Id = new Guid("8c66dcd4-d113-4acb-92b8-19a79a60e66f"),
                 GalleryTitle = "Ищу книгу",
-                GalleryContent = "---",
+                GalleryNum = 2,
             });
 
             modelBuilder.Entity<Gallery>().HasData(new Gallery
             {
                 Id = new Guid("88ad46cc-0896-4215-86e3-3d94c3e00419"),
                 GalleryTitle = "Рекомендую книгу",
-                GalleryContent = "---",
+                GalleryNum = 3,
             });
         }
     }

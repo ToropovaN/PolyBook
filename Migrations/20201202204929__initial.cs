@@ -51,11 +51,12 @@ namespace PolyBook.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookGallery = table.Column<int>(type: "int", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -69,7 +70,7 @@ namespace PolyBook.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GalleryTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GalleryContent = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GalleryNum = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,9 +82,9 @@ namespace PolyBook.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -200,22 +201,22 @@ namespace PolyBook.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "29676f3e-7f57-4e4a-b72b-dc238f999541", "a74583e5-dfe7-4f6f-82ec-c94090173b4f", "admin", "ADMIN" });
+                values: new object[] { "29676f3e-7f57-4e4a-b72b-dc238f999541", "45ab8638-a355-4d01-814b-56cf42f372df", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "985c6b5a-a434-463a-ad73-433c210a3191", "my@email.com", true, false, null, "MY@EMAIL", "ADMIN", "AQAAAAEAACcQAAAAEELRmTsT5VTBL8S/jxPu0Ku7xgqga440oSDIQDGBCUDA1Z6+SBJzzVdNarLtjPDrsw==", null, false, "", false, "admin" });
+                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "e592d144-453f-4198-acdd-5763fe945bb9", "my@email.com", true, false, null, "MY@EMAIL", "ADMIN", "AQAAAAEAACcQAAAAEJsBZYRhOgwIqbp4LvKj9iGkKpMR9ZrCqa4jDljV+dzz8psZyOf9GQdOtnJF7GjShA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Galleries",
-                columns: new[] { "Id", "GalleryContent", "GalleryTitle" },
+                columns: new[] { "Id", "GalleryNum", "GalleryTitle" },
                 values: new object[,]
                 {
-                    { new Guid("800eb303-5aae-4584-b187-672b5154dc73"), "---", "Библиотека" },
-                    { new Guid("8373b069-930c-4cef-8e14-8c855d93d0a8"), "---", "Маркет" },
-                    { new Guid("8c66dcd4-d113-4acb-92b8-19a79a60e66f"), "---", "Ищу книгу" },
-                    { new Guid("88ad46cc-0896-4215-86e3-3d94c3e00419"), "---", "Рекомендую книгу" }
+                    { new Guid("800eb303-5aae-4584-b187-672b5154dc73"), 0, "Библиотека" },
+                    { new Guid("8373b069-930c-4cef-8e14-8c855d93d0a8"), 1, "Маркет" },
+                    { new Guid("8c66dcd4-d113-4acb-92b8-19a79a60e66f"), 2, "Ищу книгу" },
+                    { new Guid("88ad46cc-0896-4215-86e3-3d94c3e00419"), 3, "Рекомендую книгу" }
                 });
 
             migrationBuilder.InsertData(

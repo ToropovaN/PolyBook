@@ -49,7 +49,7 @@ namespace PolyBook.Migrations
                         new
                         {
                             Id = "29676f3e-7f57-4e4a-b72b-dc238f999541",
-                            ConcurrencyStamp = "a74583e5-dfe7-4f6f-82ec-c94090173b4f",
+                            ConcurrencyStamp = "45ab8638-a355-4d01-814b-56cf42f372df",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -148,13 +148,13 @@ namespace PolyBook.Migrations
                         {
                             Id = "49db4b55-76ac-49c9-80df-e7632fa3448b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "985c6b5a-a434-463a-ad73-433c210a3191",
+                            ConcurrencyStamp = "e592d144-453f-4198-acdd-5763fe945bb9",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEELRmTsT5VTBL8S/jxPu0Ku7xgqga440oSDIQDGBCUDA1Z6+SBJzzVdNarLtjPDrsw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJsBZYRhOgwIqbp4LvKj9iGkKpMR9ZrCqa4jDljV+dzz8psZyOf9GQdOtnJF7GjShA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -256,7 +256,11 @@ namespace PolyBook.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BookGallery")
+                        .HasColumnType("int");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
@@ -265,9 +269,11 @@ namespace PolyBook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Year")
@@ -284,8 +290,8 @@ namespace PolyBook.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("GalleryContent")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("GalleryNum")
+                        .HasColumnType("int");
 
                     b.Property<string>("GalleryTitle")
                         .HasColumnType("nvarchar(max)");
@@ -298,25 +304,25 @@ namespace PolyBook.Migrations
                         new
                         {
                             Id = new Guid("800eb303-5aae-4584-b187-672b5154dc73"),
-                            GalleryContent = "---",
+                            GalleryNum = 0,
                             GalleryTitle = "Библиотека"
                         },
                         new
                         {
                             Id = new Guid("8373b069-930c-4cef-8e14-8c855d93d0a8"),
-                            GalleryContent = "---",
+                            GalleryNum = 1,
                             GalleryTitle = "Маркет"
                         },
                         new
                         {
                             Id = new Guid("8c66dcd4-d113-4acb-92b8-19a79a60e66f"),
-                            GalleryContent = "---",
+                            GalleryNum = 2,
                             GalleryTitle = "Ищу книгу"
                         },
                         new
                         {
                             Id = new Guid("88ad46cc-0896-4215-86e3-3d94c3e00419"),
-                            GalleryContent = "---",
+                            GalleryNum = 3,
                             GalleryTitle = "Рекомендую книгу"
                         });
                 });
@@ -334,9 +340,11 @@ namespace PolyBook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -1,8 +1,17 @@
-﻿@{
+﻿@model IEnumerable<PolyBook.Domain.Entities.Book>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Year</td>
+            <td><a href="~/Admin/Books/Edit/@book.Id">Редактировать</a></td>
+        </tr>
+    }
 </div>
