@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PolyBook.Domain;
 using PolyBook.Models;
+using PolyBook.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,34 +13,35 @@ namespace PolyBook.Controllers
 {
     public class HomeController : Controller
     {
-        AppDbContext db;
-        public HomeController(AppDbContext context)
+        private readonly DataManager dataManager;
+        public HomeController(DataManager dataManager)
         {
-            db = context;
+            this.dataManager = dataManager;
         }
-
-        /*private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }*/
 
         public IActionResult Index()
         {
-            return View(db.Books.ToList());
+            return View(dataManager.Books.GetBooks());
         }
 
         public IActionResult Library()
         {
-            ViewData["GalleryNum"] = 1;
-            return View("Gallery");
+            return View("Gallery", new GalleryViewModel(0, Config.gallery0, dataManager.Books.GetBooks()));
         }
 
         public IActionResult Market()
         {
-            ViewData["GalleryNum"] = 2;
-            return View("Gallery");
+            return View("Gallery", new GalleryViewModel(1, Config.gallery1, dataManager.Books.GetBooks()));
+        }
+
+        public IActionResult Search()
+        {
+            return View("Gallery", new GalleryViewModel(2, Config.gallery2, dataManager.Notes.GetNotes()));
+        }
+
+        public IActionResult Recommend()
+        {
+            return View("Gallery", new GalleryViewModel(3, Config.gallery3, dataManager.Notes.GetNotes()));
         }
 
 

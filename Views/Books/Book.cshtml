@@ -1,0 +1,27 @@
+﻿@model Book
+
+<div class="contentblock">
+    <h1 style="text-align:center;">@Model.Title</h1>
+    <div id="bigpost">
+        <img class="photo" src="~/img/photos/1.png" alt="photo">
+        <div class="postinfo">
+            <a><b style="display:block; text-align:center;">Иван Иванов</b></a>
+            <div class="br20"></div>
+            <b>
+                Книга из раздела
+                @{
+                    if (Model.BookGallery == 0)
+                    { <span style="color:@Config.yellow;">Библиотека</span> }
+                    if (Model.BookGallery == 1)
+                    { <span style="color:@Config.red;">Маркет</span> }
+                }
+            </b>
+            <div class="br10"></div>
+            <b>Автор:</b> @Model.Author<br>
+            <b>Год:</b> @Model.Year<br>
+            <b>Тематика:</b> @Model.Subject
+        </div>
+        <div id="bigposttext">@Model.Text</div>
+        </div>
+    </div>
+</div>

@@ -19,5 +19,9 @@ namespace PolyBook.Domain.Entities
         [Required(ErrorMessage = "Укажите год")]
         [Display(Name = "Год")]
         public int Year { get; set; }
+
+        [Required(ErrorMessage = "Укажите тематику")]
+        [Display(Name = "Тематика")]
+        public string Subject { get; set; }
     }
 }

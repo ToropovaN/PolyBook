@@ -14,10 +14,12 @@
             <div id="profile">
                 <img id="profileimg" src="~/img/profile.png" alt="profile icon">
                 <div id="profilewelcome">
-                    <h2>Добро пожаловать,</h2>
-                    <h1>Фамилия Имя</h1>
-                    <h3>Группа: 181-725<div class="editicon" /></h3>
-                    <h3>Курс: 3<div class="editicon" /></h3>
+                    <div>
+                        <span class="profiletext" style="color: #b5b9c4;">Добро пожаловать,</span><br />
+                        <span class="profilemaintext">Фамилия Имя</span><br/>
+                        <span class="profiletext">Группа: 181-725</span> <div class="editicon"></div> <br/>
+                        <span class="profiletext">Курс: 3</span> <div class="editicon"/></div>
+                    </div>
                 </div>
                 <div id="profilebutton">
                     <button class="button1">Новое объявление</button>
@@ -26,24 +28,24 @@
                 </div>
             </div>
             <div id="categories">
-                <p class="title categorylink">Объявления</p>
+                <p class="title">Объявления</p>
                 <div class="category">
                     <img class="categoryicon" src="~/img/iconlib.png" alt="icon">
-                    <a asp-area="" asp-controller="Home" asp-action="Library"><div class="button1 button2" id="libbutton">Библиотека</div></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Library"><div class="button1 button2" id="libbutton">@Config.gallery0</div></a>
                 </div>
                 <div class="category">
                     <img class="categoryicon" src="~/img/iconmark.png" alt="icon">
-                    <a asp-area="" asp-controller="Home" asp-action="Market"><div class="button1 button2" id="marketbutton">Маркет</div></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Market"><div class="button1 button2" id="marketbutton">@Config.gallery1</div></a>
                 </div>
 
-                <p class="title categorylink">Записи</p>
+                <p class="title">Записи</p>
                 <div class="category">
                     <img class="categoryicon" src="~/img/iconsearch.png" alt="icon">
-                    <a asp-area="" asp-controller="" asp-action=""><div class="button1 button2" id="searchbutton">Я ищу книгу</div></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Search"><div class="button1 button2" id="searchbutton">@Config.gallery2</div></a>
                 </div>
                 <div class="category">
                     <img class="categoryicon" src="~/img/iconrecom.png" alt="icon">
-                    <a asp-area="" asp-controller="" asp-action=""><div class="button1 button2" id="recombutton">Я рекомендую книгу</div></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Recommend"><div class="button1 button2" id="recombutton">@Config.gallery3</div></a>
                 </div>
             </div>
         </nav>
@@ -56,45 +58,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-<!--<body>
-    <header>
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PolyBook</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Library">Библиотека</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Market">Маркет</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - PolyBook
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
-    -->
