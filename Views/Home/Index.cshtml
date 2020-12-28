@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<PolyBook.Domain.Entities.Book>
 @{
-
+    var newbooks = Model.Reverse().Take(7);
 }
 
 <div class="contentblock">
     <h1>Новые объявления</h1>
     <div class="board">
         <div class="boardscroll">
-            @foreach (var book in Model){
+            @foreach (var book in newbooks){
                 if (book.BookGallery == 0){ ViewData["BookGalleryColor"] = @Config.yellow; }
                 if (book.BookGallery == 1) { ViewData["BookGalleryColor"] = @Config.red; }
             <a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@book.Id">
                 <div class="post">
                     <div class="posticon" style="background-color:@ViewData["BookGalleryColor"];"></div>
                     <div class="postname">@book.Title</div>
-                    <div class="postimg" style="border-top: solid 1px @ViewData["BookGalleryColor"];"><img class="photo" src="img/photos/1.png" alt="photo"></div>
+                    <div class="postimg" style="border-top: solid 1px @ViewData["BookGalleryColor"];"><img class="photo" src="~/img/photos/@book.ImagePath" onError="this.src='../img/photos/0.png'" alt="photo"></div>
                     <div class="postinfo">
                         <b>Иван Иванов</b> <br>
                         <b>Автор:</b> @book.Author<br>
@@ -23,7 +23,6 @@
                     </div>
                 </div>
             </a> 
-            <div></div>
             }
         </div>
     </div>

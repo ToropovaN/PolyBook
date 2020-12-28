@@ -299,6 +299,7 @@ h1{
 }
 
 #content {
+    overflow-y: scroll;
     width: 100%;
     min-width: 630px;
     padding: 20px;
@@ -307,6 +308,7 @@ h1{
 }
 
 .contentblock {
+    width: 100%;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -315,8 +317,8 @@ h1{
 
 .boardscroll {
     display: grid;
-    grid-template-columns: 270px 10px 270px 10px 270px 10px 270px 10px 270px 10px 270px 10px 270px;
-    width: 1950px;
+    grid-template-columns: 271px 271px 271px 271px 271px 271px 271px;
+    width: 1888px;
     overflow-x: hidden;
     white-space: nowrap;
 }
@@ -332,7 +334,7 @@ h1{
     outline: 1px solid #b5b9c4;
     outline-offset: -1px;
     height: 350px;
-    width: 270px;
+    width: 262px;
     display: grid;
     grid-auto-rows: 50px 225px 75px;
     white-space: normal;
@@ -351,10 +353,10 @@ h1{
 }
 
 .postname {
-    width: 270px;
+    width: 262px;
     text-align: center;
-    font-family: 'Comfortaa', cursive;
     font-size: 14px;
+    font-weight: bold;
     margin: auto 0;
     padding: 0 20px 0 35px;
 }
@@ -367,7 +369,7 @@ h1{
 
 .post .photo{
     height: 215px;
-    width: 270px;
+    width: 267px;
 }
 
 .post:hover .photo {
@@ -383,15 +385,15 @@ h1{
 }
 
 #bigpost{
-    width: 550px;
+    width: 533px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 290px 260px;
-    grid-auto-rows: 231px auto;
+    grid-template-columns: 270px 263px;
+    grid-auto-rows: 215px auto;
 }
 #bigpost .photo{
-    height: 231px;
-    width: 290px;
+    height: 215px;
+    width: 270px;
 }
 
 #bigpost .postinfo{
@@ -408,6 +410,89 @@ font-size: 14px;
 }
 
 #gallerygrid{
+display: grid;
+margin: 0 auto;
+grid-template-columns: 271px 262px;
+width: 533px;
+}
+.gallergridblock{
+margin: 0 auto 5px 0;}
 
+@media (min-width: 1300px) { 
+#gallerygrid{
+grid-template-columns: 33.3% 33.3% 33.3%;
+width: 813px;
+}
+.gallergridblock{
+margin: 0 auto 5px auto;}
 }
 
+label{
+    font-weight: bold;
+    margin: auto 0;
+}
+input{
+    width: 533px;
+}
+input[type=radio]{
+width: auto;
+}
+textarea{
+    width: 533px;
+    height: 200px;
+    resize: none;
+}
+
+.validation-summary-errors{
+    color: #ee463c;
+}
+
+
+#selectaccountmode{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.accountmode{
+    padding: 10px;
+    margin: 0 30px;
+    border-radius: 10px 10px 0px 0px;   
+    text-align: center;
+    font-weight: bold;
+    background-color:#687a84;
+    color: #ffffff;
+    text-decoration: none;
+}
+.accountmode:hover {
+    background-color:#687a84bb;
+    transition-duration: 0.2s;
+}
+.selectedmode {
+    background-color: #039ae7;
+}
+.selectedmode:hover {
+    background-color: #039ae7; 
+}
+
+.accountformrow{
+    display: grid;
+    grid-template-columns: 170px auto;
+    margin-bottom: 10px;
+}
+.accountform input{
+    width: 100%;
+}
+.accountform button{
+    width: 100%;
+    font-weight: bold;
+}
+.remembermerow{
+    font-weight: normal;
+    text-align: center;
+}
+.remembermerow input{
+    width: auto;
+    vertical-align: bottom;
+}
+.remembermerow label{
+    font-weight: normal;
+}

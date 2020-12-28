@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PolyBook.Domain.Entities;
 using PolyBook.Models;
 
-namespace MyCompany.Controllers
+namespace PolyBook.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signinMgr)
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        public AccountController(UserManager<AppUser> userMgr, SignInManager<AppUser> signinMgr)
         {
             userManager = userMgr;
             signInManager = signinMgr;
@@ -23,13 +24,14 @@ namespace MyCompany.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(new LoginViewModel());
         }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await userManager.FindByNameAsync(model.UserName);
+                AppUser user = await userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
@@ -39,10 +41,44 @@ namespace MyCompany.Controllers
                         return Redirect(returnUrl ?? "/");
                     }
                 }
-                ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
+                ModelState.AddModelError(nameof(LoginViewModel.Email), "Неверный E-mail или пароль");
             }
             return View(model);
         }
+     
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl;
+            return View(new RegisterViewModel());
+        }
+
+     [HttpPost]
+     [AllowAnonymous]
+     public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
+     {
+         if (ModelState.IsValid)
+         {
+                AppUser checkemail = await userManager.FindByEmailAsync(model.Email);
+                if (checkemail == null)
+                {
+                    AppUser user = new AppUser { UserName = model.Email, Name = model.Name, Surname = model.Surname, Email = model.Email };
+                    var result = await userManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        await signInManager.SignInAsync(user, isPersistent: false);
+                        return Redirect(returnUrl ?? "/");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+                else { ModelState.AddModelError(nameof(RegisterViewModel.Email), "Пользователь с таким E-mail уже зарегистрирован"); }
+         }
+         return View(model);
+     }
 
         [Authorize]
         public async Task<IActionResult> Logout()

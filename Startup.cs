@@ -15,6 +15,7 @@ using PolyBook.Service;
 using PolyBook.Domain;
 using PolyBook.Domain.Repositories.Abstract;
 using PolyBook.Domain.Repositories.EntityFramework;
+using PolyBook.Domain.Entities;
 
 namespace PolyBook
 {
@@ -37,7 +38,7 @@ namespace PolyBook
 
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(opts =>
+            services.AddIdentity<AppUser, IdentityRole>(opts =>
             {
                 opts.User.RequireUniqueEmail = true;
                 opts.Password.RequiredLength = 6;

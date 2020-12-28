@@ -8,24 +8,37 @@
     <main>
         <header>
             <a id="logo" asp-area="" asp-controller="Home" asp-action="Index">@Config.ProjectName</a>
-            <a id="loginlink" href="">Войти</a>
+            @if (User.Identity.IsAuthenticated){<a id="loginlink" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>}
+            else {<a id="loginlink" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>}
         </header>
         <nav>
             <div id="profile">
-                <img id="profileimg" src="~/img/profile.png" alt="profile icon">
-                <div id="profilewelcome">
-                    <div>
-                        <span class="profiletext" style="color: #b5b9c4;">Добро пожаловать,</span><br />
-                        <span class="profilemaintext">Фамилия Имя</span><br/>
-                        <span class="profiletext">Группа: 181-725</span> <div class="editicon"></div> <br/>
-                        <span class="profiletext">Курс: 3</span> <div class="editicon"/></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <img id="profileimg" src="~/img/profile.png" alt="profile icon">
+                    <div id="profilewelcome">
+                        <div>
+                            <span class="profiletext" style="color: #b5b9c4;">Добро пожаловать,</span><br />
+                            <span class="profilemaintext"></span><br />
+                            <span class="profiletext">Мои объявления</span>
+                        </div>
                     </div>
-                </div>
-                <div id="profilebutton">
-                    <button class="button1">Новое объявление</button>
-                    <div></div>
-                    <button class="button1">Новая запись</button>
-                </div>
+                    <div id="profilebutton">
+                        <button class="button1">Новое объявление</button>
+                        <div></div>
+                        <button class="button1">Новая запись</button>
+                    </div>
+                }
+                else
+                {
+                    <img id="profileimg" src="~/img/profile.png" alt="logo">
+                    <div id="profilewelcome">
+                        <div>
+                            <span class="profiletext" style="color: #b5b9c4;">Добро пожаловать</span><br />
+                            <span class="profilemaintext">Вы не авторизованы</span><br />
+                        </div>
+                    </div>
+                }
             </div>
             <div id="categories">
                 <p class="title">Объявления</p>
@@ -49,9 +62,13 @@
                 </div>
             </div>
         </nav>
+
+
         <div id="content">
             @RenderBody()
         </div>
+
+
         <footer>
         </footer>
     </main>

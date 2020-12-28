@@ -33,8 +33,8 @@ namespace MyCompany.Areas.Admin.Controllers
             {
                 if (ImageFile != null)
                 {
-                    model.ImagePath = ImageFile.FileName;
-                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", ImageFile.FileName), FileMode.Create))
+                    model.ImagePath = model.Title + ImageFile.FileName;
+                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "img/photos/", model.Title + ImageFile.FileName), FileMode.Create))
                     {
                         ImageFile.CopyTo(stream);
                     }

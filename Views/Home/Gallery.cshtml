@@ -10,26 +10,29 @@
     }
 <div class="contentblock">
     <h1>@Model.GalleryName</h1>
-
-    @if (@Model.GalleryNum <= 1)
-    {
-        foreach (var book in Model.GalleryContentBooks)
+    <div id="gallerygrid">
+        @if (@Model.GalleryNum <= 1)
         {
-            if (book.BookGallery == @Model.GalleryNum)
+            foreach (var book in Model.GalleryContentBooks)
             {
-                <a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@book.Id">
-                    <div class="post">
-                        <div class="posticon" style="background-color:@ViewData["GalleryColor"];"></div>
-                        <div class="postname">@book.Title</div>
-                        <div class="postimg" style="border-top: solid 1px @ViewData["GalleryColor"];"><img class="photo" src="~/img/photos/1.png" alt="photo"></div>
-                        <div class="postinfo">
-                            <b>Иван Иванов</b> <br>
-                            <b>Автор:</b> @book.Author<br>
-                            <b>Год:</b> @book.Year<br>
-                            <b>Тематика:</b> @book.Subject <br>
+                if (book.BookGallery == @Model.GalleryNum)
+                {
+                <div class="gallergridblock">
+                    <a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@book.Id">
+                        <div class="post">
+                            <div class="posticon" style="background-color:@ViewData["GalleryColor"];"></div>
+                            <div class="postname">@book.Title</div>
+                            <div class="postimg" style="border-top: solid 1px @ViewData["GalleryColor"];"><img class="photo" src="~/img/photos/@book.ImagePath" onError="this.src='../img/photos/0.png'" alt="photo"></div>
+                            <div class="postinfo">
+                                <b>Иван Иванов</b> <br>
+                                <b>Автор:</b> @book.Author<br>
+                                <b>Год:</b> @book.Year<br>
+                                <b>Тематика:</b> @book.Subject <br>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+                }
             }
         }
-    }
+    </div>

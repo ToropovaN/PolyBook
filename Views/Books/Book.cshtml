@@ -1,9 +1,9 @@
 ﻿@model Book
 
 <div class="contentblock">
-    <h1 style="text-align:center;">@Model.Title</h1>
+    <h1 style="width: 533px; margin: 0 auto 10px auto;">@Model.Title</h1>
     <div id="bigpost">
-        <img class="photo" src="~/img/photos/1.png" alt="photo">
+        <img class="photo" src="~/img/photos/@Model.ImagePath" onError="this.src='../../img/photos/0.png'" alt="photo">
         <div class="postinfo">
             <a><b style="display:block; text-align:center;">Иван Иванов</b></a>
             <div class="br20"></div>

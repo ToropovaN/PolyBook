@@ -9,7 +9,7 @@ using PolyBook.Domain.Entities;
 
 namespace PolyBook.Domain
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -28,15 +28,24 @@ namespace PolyBook.Domain
                 NormalizedName = "ADMIN"
             });
 
-            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = "21a39d52-c670-42bc-869a-37caf6ccaeb1",
+                Name = "student",
+                NormalizedName = "STUDENT"
+            });
+
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = "49db4b55-76ac-49c9-80df-e7632fa3448b",
                 UserName = "admin",
+                Name = "Настя",
+                Surname = "Торопова",
                 NormalizedUserName = "ADMIN",
                 Email = "my@email.com",
-                NormalizedEmail = "MY@EMAIL",
+                NormalizedEmail = "MY@EMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
+                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "superpassword"),
                 SecurityStamp = string.Empty
             });
 

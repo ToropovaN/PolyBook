@@ -1,0 +1,40 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div id="selectaccountmode">
+    <a class="accountmode" asp-area="" asp-controller="Account" asp-action="Login" style="margin-right:15px;"> Авторизация</a>
+    <a class="accountmode selectedmode" asp-area="" asp-controller="Account" asp-action="Register" style="margin-left:15px;"> Регистрация</a>
+</div>
+<div class="contentblock accountform">
+    <div style="width:400px; margin:0 auto;">
+        <form asp-area="" asp-controller="Account" asp-action="Register" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
+            <div asp-validation-summary="All"></div>
+            <div class="accountformrow">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" />
+            </div>
+            <div class="accountformrow">
+                <label asp-for="Surname"></label>
+                <input asp-for="Surname" />
+            </div>
+            <div class="accountformrow">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+            </div>
+            <div class="accountformrow">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+            </div>
+            <div class="accountformrow">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" />
+            </div>
+            <div>
+                <div class="br10"></div>
+                <button onclick="submit" class="button1">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div> 

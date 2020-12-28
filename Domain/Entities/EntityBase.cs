@@ -14,17 +14,17 @@ namespace PolyBook.Domain.Entities
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Заполните название")]
-        [Display(Name = "Название")]
+        [Display(Name = "Название:")]
         public string Title { get; set; }
 
-        [Display(Name = "Картинка")]
+        [Display(Name = "Картинка:")]
         public string ImagePath { get; set; }
 
         [Required(ErrorMessage = "Объявление не может быть пустым")]
-        [Display(Name = "Текст")]
+        [Display(Name = "Текст:")]
         public string Text { get; set; }
 
-        [Display(Name = "Дата")]
+        [Display(Name = "Дата:")]
         public string Date { get; set; }
 
         //[Display(Name = "Метатег Title")]

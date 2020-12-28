@@ -8,11 +8,11 @@ namespace PolyBook.Models
 {
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Логин")]
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "Введите e-mail")]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль")]
         [UIHint("password")]
         [Display(Name = "Пароль")]
         public string Password { get; set; }

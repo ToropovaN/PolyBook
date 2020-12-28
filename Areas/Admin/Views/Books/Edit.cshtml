@@ -1,65 +1,72 @@
 ﻿@model Book
 @{
-    string strTitle = "Редактировать Книгу";
+    string strTitle = "Редактирование";
     ViewBag.Title = strTitle;
 }
+<div class="contentblock">
+    <div style="width:533px; margin: 0 auto;">
+        <h1>@strTitle</h1>
+        <div>
+            <form asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Date" />
+                <input type="hidden" asp-for="ImagePath" />
 
-<div>
-    <h2>@strTitle</h2>
-    <div>
-        <form asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="Date" />
-            <input type="hidden" asp-for="ImagePath" />
+                <div asp-validation-summary="All"></div>
 
-            <div asp-validation-summary="All"></div>
-
-            <div>
-                <label asp-for="Title"></label>
-                <input asp-for="Title" />
-                <!--<span asp-validation-for="Title"></span>-->
-            </div>
-            <div>
-                <input asp-for="BookGallery" type="radio" value="0" />
-                <span>Библиотека</span> <br />
-                <input asp-for="BookGallery" type="radio" value="1" />
-                <span>Маркет</span> <br />
-            </div>
-            <div class="div-box">
-                <label asp-for="Text"></label>
-                <textarea asp-for="Text"></textarea>
-                <!--<span asp-validation-for="Text"></span>-->
-            </div>
-            <div>
-                <label asp-for="ImagePath"></label>
-                <input type="file" name="ImageFile" id="ImageFile" />
                 <div>
-                    <img class="img-block" src="~/images/@Model.ImagePath" />
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" />
+                    <!--<span asp-validation-for="Title"></span>-->
+                    <div class="br10"></div>
                 </div>
-            </div>
-            <div>
-                <label asp-for="Author"></label>
-                <input asp-for="Author" />
-                <!--<span asp-validation-for="Author"></span>-->
-            </div>
-            <div>
-                <label asp-for="Year"></label>
-                <input asp-for="Year" type="number" min="1800" max="2038" />
-                <!--<span asp-validation-for="Year"></span>-->
-            </div>
-            <div>
-                <label asp-for="Subject">Выберите тематику:</label>
-                <select asp-for="Subject">
-                    <option value="Аппаратные средства">Аппаратные средства</option>
-                    <option value="Дизайн и верстка">Дизайн и верстка</option>
-                    <option value="Игры">Игры</option>
-                    <option value="Математика">Математика</option>
-                    <option value="Мотивационное">Мотивационное</option>
-                    <option value="Программирование">Программирование</option>
-                    <option value="Прочее">Прочее</option>
-                </select>
-            </div>
-            <input type="submit" value="Сохранить" />
-        </form>
+                <div>
+                    <label>Выберите раздел:</label><br />
+                    <input asp-for="BookGallery" id="libradio" type="radio" value="0" />
+                    <label for="libradio">Библиотека</label> <br />
+                    <input asp-for="BookGallery" id="markradio" type="radio" value="1" />
+                    <label for="markradio">Маркет</label> <div class="br10"></div>
+</div>
+                <div class="div-box">
+                    <label asp-for="Text"></label><br />
+                    <textarea asp-for="Text"></textarea>
+                    <!--<span asp-validation-for="Text"></span>-->
+                    <div class="br10"></div>
+                </div>
+                <div style="width: 245px;">
+                    <label asp-for="ImagePath"></label>
+                    <input type="file" name="ImageFile" id="ImageFile" /> <div class="br10"></div>
+                    <div>
+                        <img class="img-block" src="~/img/photos/@Model.ImagePath" onError="this.src='../../../img/photos/0.png'" />
+                    </div>
+                </div><div class="br10"></div>
+                <div>
+                    <label asp-for="Author"></label>
+                    <input asp-for="Author" />
+                    <div class="br10"></div>
+                    <!--<span asp-validation-for="Author"></span>-->
+                </div>
+                <div>
+                    <label asp-for="Year"></label>
+                    <input asp-for="Year" type="number" />
+                    <div class="br10"></div>
+                    <!--<span asp-validation-for="Year"></span>-->
+                </div>
+                <div>
+                    <label asp-for="Subject"></label>
+                    <select asp-for="Subject">
+                        <option value="Аппаратные средства">Аппаратные средства</option>
+                        <option value="Дизайн и верстка">Дизайн и верстка</option>
+                        <option value="Игры">Игры</option>
+                        <option value="Математика">Математика</option>
+                        <option value="Мотивационное">Мотивационное</option>
+                        <option value="Программирование">Программирование</option>
+                        <option value="Прочее">Прочее</option>
+                    </select>
+                </div>
+                <div class="br20"></div>
+                <button style="width: 533px;" class="button1" type="submit">Сохранить</button>
+            </form>
         </div>
     </div>
+</div>

@@ -1,26 +1,30 @@
 ﻿@model LoginViewModel
-<div>
-    <h1>Вход в личный кабинет</h1>
-    <div class="div-box">
+@{
+    ViewData["Title"] = "Авторизация";
+}
+<div id="selectaccountmode">
+    <a class="accountmode selectedmode" asp-area="" asp-controller="Account" asp-action="Login" style="margin-right:15px;"> Авторизация</a>
+    <a class="accountmode" asp-area="" asp-controller="Account" asp-action="Register" style="margin-left:15px;"> Регистрация</a>
+</div>
+<div class="contentblock accountform">
+    <div style="width:400px; margin:0 auto;">
         <form asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
             <div asp-validation-summary="All"></div>
-            <div>
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" />
-                <span asp-validation-for="UserName"></span>
+            <div class="accountformrow">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
             </div>
-            <div>
+            <div class="accountformrow">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" />
-                <span asp-validation-for="Password"></span>
             </div>
-            <div>
+            <div class="remembermerow">
                 <label asp-for="RememberMe"></label>
                 <input asp-for="RememberMe" />
-                <span asp-validation-for="RememberMe"></span>
             </div>
             <div>
-                <input type="submit" value="Войти" />
+                <div class="br10"></div>
+                <button onclick="submit" class="button1">Войти</button>
             </div>
         </form>
     </div>
