@@ -27,10 +27,10 @@ namespace PolyBook.Domain.Entities
         [Display(Name = "Дата:")]
         public string Date { get; set; }
 
-        //[Display(Name = "Метатег Title")]
-        //public string MetaTitle { get; set; }
+        [Required]
+        public Guid OwnerID { get; set; }
 
-        //[Display(Name = "Метатег Description")]
-        //public string MetaDescription { get; set; }
+        [Required]
+        public string OwnerName { get; set; }
     }
 }

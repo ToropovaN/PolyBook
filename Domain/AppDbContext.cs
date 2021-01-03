@@ -41,11 +41,12 @@ namespace PolyBook.Domain
                 UserName = "admin",
                 Name = "Настя",
                 Surname = "Торопова",
+                Image = "img/accounts/0",
                 NormalizedUserName = "ADMIN",
                 Email = "my@email.com",
                 NormalizedEmail = "MY@EMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "superpassword"),
+                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "password"),
                 SecurityStamp = string.Empty
             });
 

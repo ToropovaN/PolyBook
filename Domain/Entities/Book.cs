@@ -26,6 +26,5 @@ namespace PolyBook.Domain.Entities
         [Required(ErrorMessage = "Укажите тематику")]
         [Display(Name = "Тематика:")]
         public string Subject { get; set; }
-
     }
 }

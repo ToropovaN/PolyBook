@@ -25,6 +25,10 @@ namespace PolyBook.Domain.Repositories.EntityFramework
         {
             return context.Books.FirstOrDefault(x => x.Id == id);
         }
+        public IQueryable<Book> GetBooksByOwnerId(Guid ownerid)
+        {
+            return context.Books.Where(p => p.OwnerID == ownerid);
+        }
 
         public void SaveBook(Book entity)
         {

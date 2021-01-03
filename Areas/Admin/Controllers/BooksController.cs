@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace MyCompany.Areas.Admin.Controllers
     {
         private readonly DataManager dataManager;
         private readonly IWebHostEnvironment hostingEnvironment;
-        public BooksController(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
+        private readonly AppDbContext context;
+        public BooksController(DataManager dataManager, AppDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             this.dataManager = dataManager;
             this.hostingEnvironment = hostingEnvironment;
+            this.context = context;
         }
 
         public IActionResult Edit(Guid id)
@@ -31,6 +34,11 @@ namespace MyCompany.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                AppUser CurrentUser = context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                string UserID = CurrentUser.Id;
+                string UserName = CurrentUser.Name + " " + CurrentUser.Surname;
+                model.OwnerID = Guid.Parse(UserID);
+                model.OwnerName = UserName;
                 if (ImageFile != null)
                 {
                     model.ImagePath = model.Title + ImageFile.FileName;

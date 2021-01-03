@@ -10,7 +10,7 @@ using PolyBook.Domain;
 namespace PolyBook.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201227123742__initial")]
+    [Migration("20210103171922__initial")]
     partial class _initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,14 +51,14 @@ namespace PolyBook.Migrations
                         new
                         {
                             Id = "29676f3e-7f57-4e4a-b72b-dc238f999541",
-                            ConcurrencyStamp = "981043d7-345b-4513-a59a-326c5875ccd6",
+                            ConcurrencyStamp = "22338293-7245-49f5-88f7-c7980d9c5483",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "21a39d52-c670-42bc-869a-37caf6ccaeb1",
-                            ConcurrencyStamp = "ec8d1546-d91f-4f39-b2f7-79dd7b2ee3fd",
+                            ConcurrencyStamp = "d50ef4db-4b89-4c27-be26-aacfc6a45a9a",
                             Name = "student",
                             NormalizedName = "STUDENT"
                         });
@@ -194,6 +194,9 @@ namespace PolyBook.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -252,14 +255,15 @@ namespace PolyBook.Migrations
                         {
                             Id = "49db4b55-76ac-49c9-80df-e7632fa3448b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7636baaf-7b67-4177-a339-6f2de1d562b5",
+                            ConcurrencyStamp = "91a35b3f-c7bf-479b-a5be-4b8719dc1efe",
                             Email = "my@email.com",
                             EmailConfirmed = true,
+                            Image = "img/accounts/0",
                             LockoutEnabled = false,
                             Name = "Настя",
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENbtUHnkR2cFIiqIBsh23GsfHsxU2yvoi0BwuOvQ60AmKMt1lh6xBstmmVrjo1gHzQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ8v9jCJGRrydjMyY3CywAkT8/vQBtIRk5InebI5lG3xyP9dJgEQISnK3tUQibmDkg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Surname = "Торопова",
@@ -286,6 +290,13 @@ namespace PolyBook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("OwnerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OwnerName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
@@ -361,6 +372,13 @@ namespace PolyBook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("OwnerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OwnerName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")

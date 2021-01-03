@@ -16,6 +16,7 @@ using PolyBook.Domain;
 using PolyBook.Domain.Repositories.Abstract;
 using PolyBook.Domain.Repositories.EntityFramework;
 using PolyBook.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace PolyBook
 {
@@ -35,6 +36,15 @@ namespace PolyBook
             services.AddTransient<IBooksRepository, EFBooksRepository>();
             services.AddTransient<INotesRepository, EFNotesRepository>();
             services.AddTransient<DataManager>();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 
@@ -90,6 +100,7 @@ namespace PolyBook
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

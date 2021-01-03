@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using PolyBook.Domain;
 using PolyBook.Domain.Entities;
 using PolyBook.Models;
-
 namespace PolyBook.Controllers
 {
     [Authorize]
@@ -12,10 +15,14 @@ namespace PolyBook.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
-        public AccountController(UserManager<AppUser> userMgr, SignInManager<AppUser> signinMgr)
+        private readonly AppDbContext context;
+        private readonly DataManager dataManager;
+        public AccountController(UserManager<AppUser> userMgr, SignInManager<AppUser> signinMgr, AppDbContext context, DataManager dataManager)
         {
             userManager = userMgr;
             signInManager = signinMgr;
+            this.context = context;
+            this.dataManager = dataManager;
         }
 
         [AllowAnonymous]
@@ -62,7 +69,10 @@ namespace PolyBook.Controllers
                 AppUser checkemail = await userManager.FindByEmailAsync(model.Email);
                 if (checkemail == null)
                 {
-                    AppUser user = new AppUser { UserName = model.Email, Name = model.Name, Surname = model.Surname, Email = model.Email };
+                    Random rnd = new Random();
+                    int imagenumber = rnd.Next(1, 10);
+
+                    AppUser user = new AppUser { UserName = model.Email, Name = model.Name, Surname = model.Surname, Email = model.Email, Image = "img/accounts/" + imagenumber.ToString() };
                     var result = await userManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
@@ -85,6 +95,15 @@ namespace PolyBook.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+
+        public IActionResult MyBooks()
+        {
+            AppUser CurrentUser = context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            Guid UserID = Guid.Parse(CurrentUser.Id);
+            return View("Gallery", new GalleryViewModel(5, "Мои книги", dataManager.Books.GetBooksByOwnerId(UserID)));
         }
     }
 }

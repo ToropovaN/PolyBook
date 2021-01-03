@@ -1,0 +1,17 @@
+﻿@model ProfileViewModel
+@{ViewData["ProfileImage"] = "https://localhost:44346/" + Model.UserImage + ".png";}
+
+<img id="profileimg" src="@ViewData["ProfileImage"]" alt="profile icon">
+
+<div id="profilewelcome">
+    <div>
+        <span class="profiletext" style="color: #b5b9c4;">Добро пожаловать,</span><br />
+        <span class="profilemaintext">@Model.UserName @Model.UserSurname</span><br />
+        <span class="profiletext"> <a asp-area="" asp-controller="Account" asp-action="MyBooks">Мои объявления</a></span>
+    </div>
+</div>
+<div id="profilebutton">
+    <button class="button1">Новое объявление</button>
+    <div></div>
+    <button class="button1">Новая запись</button>
+</div>

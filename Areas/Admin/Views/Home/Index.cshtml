@@ -1,40 +1,35 @@
 ﻿@model IQueryable<Book>
 @{
-    string strTitle = "Панель администратора";
-    ViewBag.Title = strTitle;
+    ViewBag.Title = "Панель администратора";
 }
-
-<div>
-    <h2>@strTitle</h2>
-    <div>
-        <h3>Книги</h3>
-        <div class="div-box">
-            <a asp-area="Admin" asp-controller="Books" asp-action="Edit" asp-route-id="">Добавить книгу</a>
-        </div>
+<div class="contentblock">
+    <div style="width:533px; margin: 0 auto;">
+        <h1>@ViewBag.Title</h1>
+        <a asp-area="Admin" asp-controller="Books" asp-action="Edit" asp-route-id="">
+            <button style="width: 533px;" class="button1 addbutton">Добавить книгу</button>
+        </a>
+        <div class="br20"></div>
         @if (Model.Any())
         {
-            <div>
+            <table width="100%" style="text-align:center;">
                 @foreach (Book entity in Model)
                 {
-                <div>
-                    <a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@entity.Id">
-                        @($"{entity.Title}")
-                    </a>
-                    <a asp-area="Admin" asp-controller="Books" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
-                    |
-                    <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="Books" asp-action="Delete" method="post">
-                        <input type="hidden" name="id" value="@entity.Id">
-                        <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</a>
-                    </form>
-                    |
-                </div>
+                    <tr>
+                        <td style="width:33%"><a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@entity.Id"><b> @($"{entity.Title}") </b></a></td>
+                        <td style="width:33%"><a asp-area="Admin" asp-controller="Books" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a></td>
+                        <td style="width:33%">
+                            <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="Books" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@entity.Id">
+                                <button class="button1 deletebutton" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
                 }
-            </div>
+            </table>
         }
-    </div>
-    <div class="div-box">
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-            <input type="submit" value="Выйти" />
+        <div class="br20"></div>
+        <form style="width: 100%" asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            <button style="width: 533px;" class="button1" type="submit">Выйти</button>
         </form>
     </div>
 </div>

@@ -9,6 +9,8 @@ namespace PolyBook.Domain.Repositories.Abstract
     public interface IBooksRepository
     {
         IQueryable<Book> GetBooks();
+
+        IQueryable<Book> GetBooksByOwnerId(Guid ownerid);
         Book GetBookById(Guid id);
         void SaveBook(Book entity);
         void DeleteBook(Guid id);

@@ -1,0 +1,47 @@
+﻿@model GalleryViewModel
+
+@{ /*
+    @switch (@Model.GalleryNum)
+    {
+        case 0: ViewData["Title"] = "Library"; ViewData["GalleryColor"] = @Config.yellow; break;
+        case 1: ViewData["Title"] = "Market"; ViewData["GalleryColor"] = @Config.red; break;
+        case 2: ViewData["Title"] = "Coming soon"; break;
+        case 3: ViewData["Title"] = "Coming soon"; break;
+        case 5: ViewData["Title"] = "My Books"; break;
+    }
+        */}
+
+@{ 
+    ViewData["Title"] = @Model.GalleryName;
+}
+<div class="contentblock">
+    <h1>@Model.GalleryName</h1>
+    <div id="gallerygrid">
+        @if (@Model.GalleryNum != 2 && @Model.GalleryNum != 3)
+        {
+            foreach (var book in Model.GalleryContentBooks)
+            {
+                if (book.BookGallery == 0) { ViewData["GalleryColor"] = @Config.yellow; }
+                if (book.BookGallery == 1) { ViewData["GalleryColor"] = @Config.red; }
+                if (book.BookGallery == @Model.GalleryNum || (@Model.GalleryNum == 5))
+                {
+                    <div class="gallergridblock">
+                        <a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@book.Id">
+                            <div class="post">
+                                <div class="posticon" style="background-color:@ViewData["GalleryColor"];"></div>
+                                <div class="postname">@book.Title</div>
+                                <div class="postimg" style="border-top: solid 1px @ViewData["GalleryColor"];"><img class="photo" src="~/img/photos/@book.ImagePath" onError="this.src='../img/photos/0.png'" alt="photo"></div>
+                                <div class="postinfo">
+                                    <b>@book.OwnerName</b> <br>
+                                    <b>Автор:</b> @book.Author<br>
+                                    <b>Год:</b> @book.Year<br>
+                                    <b>Тематика:</b> @book.Subject <br>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

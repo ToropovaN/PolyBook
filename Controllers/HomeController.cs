@@ -1,22 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PolyBook.Domain;
+using PolyBook.Domain.Entities;
 using PolyBook.Models;
 using PolyBook.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PolyBook.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<AppUser> userManager;
         private readonly DataManager dataManager;
-        public HomeController(DataManager dataManager)
+        private readonly AppDbContext context;
+        public HomeController(DataManager dataManager, UserManager<AppUser> userMgr, AppDbContext context)
         {
             this.dataManager = dataManager;
+            userManager = userMgr;
+            this.context = context;
         }
 
         public IActionResult Index()

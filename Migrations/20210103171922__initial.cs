@@ -28,6 +28,7 @@ namespace PolyBook.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,7 +61,9 @@ namespace PolyBook.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OwnerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,7 +91,9 @@ namespace PolyBook.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OwnerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,14 +211,14 @@ namespace PolyBook.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "29676f3e-7f57-4e4a-b72b-dc238f999541", "981043d7-345b-4513-a59a-326c5875ccd6", "admin", "ADMIN" },
-                    { "21a39d52-c670-42bc-869a-37caf6ccaeb1", "ec8d1546-d91f-4f39-b2f7-79dd7b2ee3fd", "student", "STUDENT" }
+                    { "29676f3e-7f57-4e4a-b72b-dc238f999541", "22338293-7245-49f5-88f7-c7980d9c5483", "admin", "ADMIN" },
+                    { "21a39d52-c670-42bc-869a-37caf6ccaeb1", "d50ef4db-4b89-4c27-be26-aacfc6a45a9a", "student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "7636baaf-7b67-4177-a339-6f2de1d562b5", "my@email.com", true, false, null, "Настя", "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAENbtUHnkR2cFIiqIBsh23GsfHsxU2yvoi0BwuOvQ60AmKMt1lh6xBstmmVrjo1gHzQ==", null, false, "", "Торопова", false, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "91a35b3f-c7bf-479b-a5be-4b8719dc1efe", "my@email.com", true, "img/accounts/0", false, null, "Настя", "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEJ8v9jCJGRrydjMyY3CywAkT8/vQBtIRk5InebI5lG3xyP9dJgEQISnK3tUQibmDkg==", null, false, "", "Торопова", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Galleries",

@@ -172,6 +172,20 @@ nav {
             transform: scaleX(1);
         }
 
+.deletebutton{
+    background: #ee463c;
+}
+.deletebutton:before{
+    background: #d31c12;
+}
+.addbutton{
+    background: #fc9616;
+}
+.addbutton:before{
+    background: #fcae4f;
+}
+
+
 #marketbutton {
     border: solid 1px #ee463c;
 }
