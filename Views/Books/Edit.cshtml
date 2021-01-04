@@ -7,12 +7,12 @@
     <div style="width:533px; margin: 0 auto;">
         <h1>@strTitle</h1>
         <div>
-            <form asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <form asp-controller="Books" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Date" />
                 <input type="hidden" asp-for="ImagePath" />
-                <input type="hidden" asp-for="OwnerID" />
-                <input type="hidden" asp-for="OwnerName" value="null"/>
+                <input type="hidden" asp-for="OwnerID"  value="@Model.OwnerID"/>
+                <input type="hidden" asp-for="OwnerName"/>
 
                 <div asp-validation-summary="All"></div>
 

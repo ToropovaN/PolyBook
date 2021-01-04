@@ -1,0 +1,16 @@
+﻿@model EditButtonViewModel
+
+@if (Model.isOwner)
+{
+    <a style="text-align: center;" asp-controller="Books" asp-action="Edit" asp-route-id="@Model.book.Id">
+        <button style="width: 263px; margin-right: 7px;" class="button1 addbutton">Редактировать</button>
+    </a>
+    <form style="display: inline-block;" id="form-@Model.book.Id" asp-area="" asp-controller="Books" asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.book.Id">
+        <button style="width: 263px;" class="button1 deletebutton" onclick="document.getElementById('form-@Model.book.Id').submit();">Удалить</button>
+    </form>
+}
+else
+{
+
+}

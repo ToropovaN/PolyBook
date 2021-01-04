@@ -22,6 +22,9 @@
             <b>Тематика:</b> @Model.Subject
         </div>
         <div id="bigposttext">@Model.Text</div>
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @await Component.InvokeAsync("EditButton", @Model)
+        }
     </div>
 </div>

@@ -39,9 +39,9 @@ namespace PolyBook.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public void DeleteBook(Guid id)
+        public void DeleteBook(Book book)
         {
-            context.Books.Remove(new Book() { Id = id });
+            context.Books.Remove(book);
             context.SaveChanges();
         }
     }

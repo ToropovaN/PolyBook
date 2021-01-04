@@ -13,6 +13,6 @@ namespace PolyBook.Domain.Repositories.Abstract
         IQueryable<Book> GetBooksByOwnerId(Guid ownerid);
         Book GetBookById(Guid id);
         void SaveBook(Book entity);
-        void DeleteBook(Guid id);
+        void DeleteBook(Book book);
     }
 }

@@ -16,9 +16,9 @@
                 {
                     <tr>
                         <td style="width:33%"><a asp-area="" asp-controller="Books" asp-action="Book" asp-route-id="@entity.Id"><b> @($"{entity.Title}") </b></a></td>
-                        <td style="width:33%"><a asp-area="Admin" asp-controller="Books" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a></td>
+                        <td style="width:33%"><a asp-area="" asp-controller="Books" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a></td>
                         <td style="width:33%">
-                            <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="Books" asp-action="Delete" method="post">
+                            <form style="display: inline-block;" id="form-@entity.Id" asp-area="" asp-controller="Books" asp-action="Delete" method="post">
                                 <input type="hidden" name="id" value="@entity.Id">
                                 <button class="button1 deletebutton" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</button>
                             </form>
