@@ -9,12 +9,10 @@ namespace PolyBook.Domain
     public class DataManager
     {
         public IBooksRepository Books { get; set; }
-        public INotesRepository Notes { get; set; }
 
-        public DataManager(IBooksRepository booksRepository, INotesRepository notesRepository)
+        public DataManager(IBooksRepository booksRepository)
         {
             Books = booksRepository;
-            Notes = notesRepository;
         }
     }
 }

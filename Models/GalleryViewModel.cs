@@ -12,20 +12,10 @@ namespace PolyBook.Models
             GalleryNum = num;
             GalleryName = name;
             GalleryContentBooks = content;
-            GalleryContentNotes = null;
-        }
-
-        public GalleryViewModel(int num, string name, IEnumerable<Note> content)
-        {
-            GalleryNum = num;
-            GalleryName = name;
-            GalleryContentNotes = content;
-            GalleryContentBooks = null;
         }
 
         public int GalleryNum { get; set; }
         public string GalleryName { get; set; }
         public IEnumerable<Book> GalleryContentBooks { get; set; }
-        public IEnumerable<Note> GalleryContentNotes { get; set; }
     }
 }

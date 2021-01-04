@@ -58,12 +58,12 @@ namespace PolyBook.Migrations
                     Author = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,23 +81,6 @@ namespace PolyBook.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Galleries", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Notes",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OwnerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,14 +194,14 @@ namespace PolyBook.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "29676f3e-7f57-4e4a-b72b-dc238f999541", "22338293-7245-49f5-88f7-c7980d9c5483", "admin", "ADMIN" },
-                    { "21a39d52-c670-42bc-869a-37caf6ccaeb1", "d50ef4db-4b89-4c27-be26-aacfc6a45a9a", "student", "STUDENT" }
+                    { "29676f3e-7f57-4e4a-b72b-dc238f999541", "fce824be-ff58-4a04-99e8-ac173c55e4e7", "admin", "ADMIN" },
+                    { "21a39d52-c670-42bc-869a-37caf6ccaeb1", "1a64b194-391d-4a17-a48f-734332514f41", "student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "91a35b3f-c7bf-479b-a5be-4b8719dc1efe", "my@email.com", true, "img/accounts/0", false, null, "Настя", "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEJ8v9jCJGRrydjMyY3CywAkT8/vQBtIRk5InebI5lG3xyP9dJgEQISnK3tUQibmDkg==", null, false, "", "Торопова", false, "admin" });
+                values: new object[] { "49db4b55-76ac-49c9-80df-e7632fa3448b", 0, "d462ed71-1797-4c50-a4c6-d0e2669ce933", "my@email.com", true, "img/accounts/0", false, null, "Настя", "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAELu+A+HUgsnOmeku3iYpJECAAC0RM9cSEfjh4iMrtS6EEu7TRx0T9dd1q/3jZJtdlg==", null, false, "", "Торопова", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Galleries",
@@ -298,9 +281,6 @@ namespace PolyBook.Migrations
 
             migrationBuilder.DropTable(
                 name: "Galleries");
-
-            migrationBuilder.DropTable(
-                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

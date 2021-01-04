@@ -15,6 +15,7 @@ namespace PolyBook.Domain.Entities
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Заполните название")]
+        [StringLength(40, MinimumLength = 3, ErrorMessage = "Поле <Название> должно содержать от 3 до 40 символов")]
         [Display(Name = "Название:")]
         public string Title { get; set; }
 

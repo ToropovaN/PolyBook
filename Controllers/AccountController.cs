@@ -103,7 +103,7 @@ namespace PolyBook.Controllers
         {
             AppUser CurrentUser = context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
             Guid UserID = Guid.Parse(CurrentUser.Id);
-            return View("Gallery", new GalleryViewModel(5, "Мои книги", dataManager.Books.GetBooksByOwnerId(UserID)));
+            return View("Gallery", new GalleryViewModel(3, "Мои книги", dataManager.Books.GetBooksByOwnerId(UserID)));
         }
     }
 }

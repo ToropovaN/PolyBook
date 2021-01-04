@@ -39,24 +39,12 @@
                     <img class="categoryicon" src="~/img/iconmark.png" alt="icon">
                     <a asp-area="" asp-controller="Home" asp-action="Market"><div class="button1 button2" id="marketbutton">@Config.gallery1</div></a>
                 </div>
-
-                <p class="title">Записи</p>
-                <div class="category">
-                    <img class="categoryicon" src="~/img/iconsearch.png" alt="icon">
-                    <a asp-area="" asp-controller="Home" asp-action="Search"><div class="button1 button2" id="searchbutton">@Config.gallery2</div></a>
-                </div>
-                <div class="category">
-                    <img class="categoryicon" src="~/img/iconrecom.png" alt="icon">
-                    <a asp-area="" asp-controller="Home" asp-action="Recommend"><div class="button1 button2" id="recombutton">@Config.gallery3</div></a>
-                </div>
             </div>
         </nav>
-
 
         <div id="content">
             @RenderBody()
         </div>
-
 
         <footer>
         </footer>

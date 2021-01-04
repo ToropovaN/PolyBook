@@ -49,14 +49,14 @@ namespace PolyBook.Migrations
                         new
                         {
                             Id = "29676f3e-7f57-4e4a-b72b-dc238f999541",
-                            ConcurrencyStamp = "22338293-7245-49f5-88f7-c7980d9c5483",
+                            ConcurrencyStamp = "fce824be-ff58-4a04-99e8-ac173c55e4e7",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "21a39d52-c670-42bc-869a-37caf6ccaeb1",
-                            ConcurrencyStamp = "d50ef4db-4b89-4c27-be26-aacfc6a45a9a",
+                            ConcurrencyStamp = "1a64b194-391d-4a17-a48f-734332514f41",
                             Name = "student",
                             NormalizedName = "STUDENT"
                         });
@@ -253,7 +253,7 @@ namespace PolyBook.Migrations
                         {
                             Id = "49db4b55-76ac-49c9-80df-e7632fa3448b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "91a35b3f-c7bf-479b-a5be-4b8719dc1efe",
+                            ConcurrencyStamp = "d462ed71-1797-4c50-a4c6-d0e2669ce933",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             Image = "img/accounts/0",
@@ -261,7 +261,7 @@ namespace PolyBook.Migrations
                             Name = "Настя",
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ8v9jCJGRrydjMyY3CywAkT8/vQBtIRk5InebI5lG3xyP9dJgEQISnK3tUQibmDkg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELu+A+HUgsnOmeku3iYpJECAAC0RM9cSEfjh4iMrtS6EEu7TRx0T9dd1q/3jZJtdlg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Surname = "Торопова",
@@ -294,7 +294,6 @@ namespace PolyBook.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("OwnerName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
@@ -307,7 +306,8 @@ namespace PolyBook.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -358,38 +358,6 @@ namespace PolyBook.Migrations
                             GalleryNum = 3,
                             GalleryTitle = "Рекомендую книгу"
                         });
-                });
-
-            modelBuilder.Entity("PolyBook.Domain.Entities.Note", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("OwnerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("OwnerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Notes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

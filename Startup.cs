@@ -34,7 +34,6 @@ namespace PolyBook
             Configuration.Bind("Project", new Config());
 
             services.AddTransient<IBooksRepository, EFBooksRepository>();
-            services.AddTransient<INotesRepository, EFNotesRepository>();
             services.AddTransient<DataManager>();
 
             services.AddDistributedMemoryCache();

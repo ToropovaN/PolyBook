@@ -42,17 +42,6 @@ namespace PolyBook.Controllers
             return View("Gallery", new GalleryViewModel(1, Config.gallery1, dataManager.Books.GetBooks()));
         }
 
-        public IActionResult Search()
-        {
-            return View("Gallery", new GalleryViewModel(2, Config.gallery2, dataManager.Notes.GetNotes()));
-        }
-
-        public IActionResult Recommend()
-        {
-            return View("Gallery", new GalleryViewModel(3, Config.gallery3, dataManager.Notes.GetNotes()));
-        }
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

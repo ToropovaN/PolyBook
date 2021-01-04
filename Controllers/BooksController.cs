@@ -31,7 +31,7 @@ namespace PolyBook.Controllers
         public IActionResult Book(Guid id)
         {
             Book book = dataManager.Books.GetBookById(id);
-            if (book == null) {return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController()); }
+            if (book == null) {return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());}
             return View("Book", book);
         }
 
@@ -73,8 +73,8 @@ namespace PolyBook.Controllers
                 model.OwnerName = BookOwner.Name + " " + BookOwner.Surname;
                 if (ImageFile != null)
                 {
-                    model.ImagePath = model.Title + ImageFile.FileName;
-                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "img/photos/", model.Title + ImageFile.FileName), FileMode.Create))
+                    model.ImagePath = DateTime.Now.ToString("HHmmss") + BookOwner.Surname + ".png";
+                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "img/photos/", model.ImagePath), FileMode.Create))
                     {
                         ImageFile.CopyTo(stream);
                     }
